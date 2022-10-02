@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import imrankst1221.invite.team.member.R
 import imrankst1221.invite.team.member.base.BaseActivity
-import imrankst1221.invite.team.member.ui.viewmodels.TeamViewModel
+import imrankst1221.invite.team.member.ui.viewmodels.TeamsViewModel
 import imrankst1221.invite.team.member.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
@@ -17,7 +17,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun setBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-    val teamViewModel: TeamViewModel by viewModels()
+    val teamsViewModel: TeamsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
