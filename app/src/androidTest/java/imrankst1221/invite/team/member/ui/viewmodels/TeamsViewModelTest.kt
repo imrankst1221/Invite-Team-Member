@@ -42,7 +42,7 @@ class TeamsViewModelTest{
     }
 
     @Test
-    fun testTeams_dataStore() = runBlocking {
+    fun dataTest_team_mock_case_1() = runBlocking {
         val id = "57994f271ca5dd20847b910c"
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()

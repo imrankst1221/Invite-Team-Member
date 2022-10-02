@@ -1,5 +1,6 @@
 package imrankst1221.invite.team.member.data.api
 
+import android.content.Context
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,18 +23,16 @@ interface ApiService {
     ): Response<Team>
 
     companion object {
-        fun create(): ApiService {
+        fun create(context: Context): ApiService {
             val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
             val dispatcher = Dispatcher().apply { maxRequests = 1 }
-            val interceptor: Interceptor = object : Interceptor{
-                @Throws(IOException::class)
-                override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
-                    SystemClock.sleep(1000)
-                    return chain.proceed(chain.request())
-                }
+            val interceptor: Interceptor = Interceptor { chain ->
+                SystemClock.sleep(1000)
+                chain.proceed(chain.request())
             }
 
             val client = OkHttpClient.Builder()
+                .addInterceptor(MockTeamDataInterceptor(context)) //using okhttp3 interceptor fake response.
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
@@ -50,5 +49,4 @@ interface ApiService {
                 .create(ApiService::class.java)
         }
     }
-
 }
