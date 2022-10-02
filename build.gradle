@@ -1,8 +1,57 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        kotlinVersion = '1.7.10'
+        hiltVersion = '2.38.1'
+        workVersion = '2.7.1'
+        gsonVersion = '2.8.9'
+        roomVersion = '2.4.3'
+
+        appcompatVersion = '1.5.0'
+        recyclerviewVersion ='1.2.1'
+        navigationVersion = '2.4.0-alpha01'
+        preferenceVersion = '1.1.1'
+        materialVersion = '1.8.0-alpha01'
+        retrofitVersion = '2.9.0'
+        coroutinesVersion = "1.4.2"
+        okhttpLoggingVersion = '4.9.3'
+        constraintLayoutVersion = '2.1.4'
+        pagingVersion = '3.2.0-alpha02'
+        shimmerVersion = '0.5.0'
+        coreKtxVersion = '1.9.0'
+        livedataKtxVersion = '2.5.1'
+        fragmentKtxVersion= '2.5.1'
+        uiKtxVersion = '2.5.1'
+
+        // test
+        junit = '4.13.2'
+        testTruth= "1.0.1"
+        testExtJunit = '1.1.3'
+        testCore = '1.4.0'
+        testFragment = '1.6.0-alpha02'
+        testCoreJunit = '2.1.0'
+        espressoVersion = '3.4.0'
+        robolectric = '4.6.1'
+        coroutinesTest = '1.4.2'
+        accessibilityTest = '3.1.2'
+    }
+
+    buildscript {
+        dependencies {
+            classpath("com.google.dagger:hilt-android-gradle-plugin:2.38.1")
+        }
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id 'androidx.navigation.safeargs.kotlin' version '2.4.1' apply false
 }
 
 task clean(type: Delete) {

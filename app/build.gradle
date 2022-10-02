@@ -1,19 +1,23 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "imrankst1221.invite.team.member"
         minSdk 24
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "imrankst1221.invite.team.member.utilities.CustomTestRunner"
     }
 
     buildTypes {
@@ -22,6 +26,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    hilt {
+        enableTransformForLocalTests = true
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    kapt {
+        correctErrorTypes true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -29,20 +51,58 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.livedataKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.livedataKtxVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompatVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.fragmentKtxVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.uiKtxVersion"
+    implementation "androidx.preference:preference-ktx:$rootProject.preferenceVersion"
+
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$rootProject.pagingVersion"
+
+    implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    implementation "androidx.work:work-runtime-ktx:$rootProject.workVersion"
+
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggingVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
+
+    // Testing dependencies
+    testImplementation "junit:junit:$rootProject.junit"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.testCoreJunit"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
+    androidTestImplementation "androidx.test:core-ktx:$rootProject.testCore"
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.testCoreJunit"
+    androidTestImplementation "com.google.truth:truth:$rootProject.testTruth"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesTest"
+
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:$rootProject.accessibilityTest"
+    debugImplementation "androidx.fragment:fragment-testing:$rootProject.testFragment"
+
+    testImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
+    kaptTest "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
+    testAnnotationProcessor "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
+    androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
 }
