@@ -1,4 +1,4 @@
-package imrankst1221.invite.team.member
+package imrankst1221.invite.team.member.ui.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,17 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import imrankst1221.invite.team.member.databinding.FragmentSecondBinding
+import imrankst1221.invite.team.member.R
+import imrankst1221.invite.team.member.databinding.FragmentHomeBinding
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-class InviteMemberFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -24,7 +19,7 @@ class InviteMemberFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -32,8 +27,8 @@ class InviteMemberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding.buttonInvite.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
 

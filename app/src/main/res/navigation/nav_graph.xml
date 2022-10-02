@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="imrankst1221.invite.team.member.HomeFragment"
-        android:label="@string/first_fragment_label"
+        android:name="imrankst1221.invite.team.member.ui.view.fragment.HomeFragment"
+        android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="imrankst1221.invite.team.member.InviteMemberFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_invite_member">
+        android:name="imrankst1221.invite.team.member.ui.view.fragment.InviteMembersFragment"
+        android:label="@string/invite_members_fragment_label"
+        tools:layout="@layout/fragment_invite_members">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
