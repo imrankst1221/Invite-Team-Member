@@ -6,7 +6,12 @@ import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import imrankst1221.invite.team.member.data.repository.TeamsRepositoryImp
+import imrankst1221.invite.team.member.utilities.Constants
 import imrankst1221.invite.team.member.utilities.MainCoroutineRule
+import imrankst1221.invite.team.member.utilities.TeamExtensions.currentMember
+import imrankst1221.invite.team.member.utilities.TeamExtensions.isAvailableMemberSlots
+import imrankst1221.invite.team.member.utilities.TeamExtensions.isAvailableSupporterSlots
+import imrankst1221.invite.team.member.utilities.TeamExtensions.isSupporterLimitZero
 import imrankst1221.invite.team.member.utilities.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -20,7 +25,7 @@ import javax.inject.Inject
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4ClassRunner::class)
-class TeamsViewModelTest{
+class TeamsViewModelTest {
     private lateinit var viewModel: TeamsViewModel
     private var hiltRule = HiltAndroidRule(this)
     private val coroutineRule = MainCoroutineRule()
@@ -41,12 +46,86 @@ class TeamsViewModelTest{
         viewModel = TeamsViewModel(repository)
     }
 
+    /**
+     * Run the app on Debug mode
+     * Mock data read successfully from okhttp3.Interceptor
+     * Mock data file name: team_mock_case_1.json
+     */
     @Test
-    fun dataTest_team_mock_case_1() = runBlocking {
-        val id = "57994f271ca5dd20847b910c"
+    fun mockDataReadTest_team_mock_case_1() = runBlocking {
+        val id = Constants.DEMO_TEAM_IDS[0]
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()
         assertThat(data.id).isEqualTo(id)
+    }
+
+    /**
+     * Run the app on Debug mode
+     * Test current member count
+     * Mock data file name: team_mock_case_1.json
+     */
+    @Test
+    fun testCurrentMemberCount_team_mock_case_1() = runBlocking {
+        val id = Constants.DEMO_TEAM_IDS[0]
+        viewModel.fetchTeams(id)
+        val data = viewModel.onTeamsData().getOrAwaitValue()
+        assertThat(data.currentMember()).isEqualTo(
+            (data.members?.total ?: 0) - (data.members?.supporters ?: 0)
+        )
+    }
+
+    /**
+     * Run the app on Debug mode
+     * Test member slots not available
+     * Mock data file name: team_mock_case_2.json
+     */
+    @Test
+    fun testMemberSlotsNotAvailable_team_mock_case_2() = runBlocking {
+        val id = Constants.DEMO_TEAM_IDS[1]
+        viewModel.fetchTeams(id)
+        val data = viewModel.onTeamsData().getOrAwaitValue()
+        assertThat(data.isAvailableMemberSlots()).isFalse()
+    }
+
+
+    /**
+     * Run the app on Debug mode
+     * Test Supporters are not available for the Team
+     * Mock data file name: team_mock_case_3.json
+     */
+    @Test
+    fun testSupporterAreNotAvailable_team_mock_case_3() = runBlocking {
+        val id = Constants.DEMO_TEAM_IDS[2]
+        viewModel.fetchTeams(id)
+        val data = viewModel.onTeamsData().getOrAwaitValue()
+        assertThat(data.isSupporterLimitZero()).isTrue()
+    }
+
+    /**
+     * Run the app on Debug mode
+     * Test Supporters are available but there are no open slots
+     * Mock data file name: team_mock_case_4.json
+     */
+    @Test
+    fun testSupportersSlotsNotAvailable_team_mock_case_4() = runBlocking {
+        val id = Constants.DEMO_TEAM_IDS[3]
+        viewModel.fetchTeams(id)
+        val data = viewModel.onTeamsData().getOrAwaitValue()
+        assertThat(data.isAvailableSupporterSlots()).isFalse()
+    }
+
+    /**
+     * Run the app on Debug mode
+     * Test Supporters and member both are available
+     * Mock data file name: team_mock_case_1.json
+     */
+    @Test
+    fun testSupportersSlotsNotAvailable_team_mock_case_1() = runBlocking {
+        val id = Constants.DEMO_TEAM_IDS[0]
+        viewModel.fetchTeams(id)
+        val data = viewModel.onTeamsData().getOrAwaitValue()
+        assertThat(data.isAvailableMemberSlots()).isTrue()
+        assertThat(data.isAvailableSupporterSlots()).isTrue()
     }
 
 }

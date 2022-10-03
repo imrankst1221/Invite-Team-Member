@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.util.Log
 import java.io.IOException
 import imrankst1221.invite.team.member.BuildConfig
+import imrankst1221.invite.team.member.utilities.Constants
 import imrankst1221.invite.team.member.utilities.UtilMethods
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -37,22 +38,27 @@ class MockTeamDataInterceptor: Interceptor {
         if (BuildConfig.DEBUG) {
             val request: Request = chain.request()
             if (path.equals("/teams", ignoreCase = true)) {
-                response = getMockEventListResponse(request)
+                var filename = "team_mock_case_1.json"
+                Constants.DEMO_TEAM_IDS.forEachIndexed{ index, teamId ->
+                    if(chain.request().url.toUri().query.compareTo("teamId=$teamId") == 0){
+                        filename = "team_mock_case_${index + 1}.json"
+                    }
+                }
+                response = getMockEventListResponse(request, filename)
             }
         }
         return response
     }
 
-    private fun getMockEventListResponse(request: Request): Response? {
+    private fun getMockEventListResponse(request: Request, filename: String): Response? {
         val response: Response
-        val data: String = UtilMethods.loadJSONFromAsset(context, "team_mock_case_1.json") ?: ""
+        val data: String = UtilMethods.loadJSONFromAsset(context, filename) ?: ""
         response = getHttpSuccessResponse(request, data)
         return response
     }
 
     private fun getHttpSuccessResponse(request: Request, dataJson: String): Response {
-        val response: Response
-        response = if (TextUtils.isEmpty(dataJson)) {
+        val response: Response = if (TextUtils.isEmpty(dataJson)) {
             Response.Builder()
                 .code(500)
                 .protocol(Protocol.HTTP_1_0)

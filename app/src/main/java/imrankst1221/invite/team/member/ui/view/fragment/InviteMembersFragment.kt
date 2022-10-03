@@ -13,7 +13,6 @@ class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
 }
