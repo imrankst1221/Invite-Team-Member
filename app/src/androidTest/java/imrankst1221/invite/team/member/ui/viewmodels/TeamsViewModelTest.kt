@@ -8,10 +8,10 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import imrankst1221.invite.team.member.data.repository.TeamsRepositoryImp
 import imrankst1221.invite.team.member.utilities.Constants
 import imrankst1221.invite.team.member.utilities.MainCoroutineRule
-import imrankst1221.invite.team.member.utilities.TeamExtensions.currentMember
-import imrankst1221.invite.team.member.utilities.TeamExtensions.isAvailableMemberSlots
-import imrankst1221.invite.team.member.utilities.TeamExtensions.isAvailableSupporterSlots
-import imrankst1221.invite.team.member.utilities.TeamExtensions.isSupporterLimitZero
+import imrankst1221.invite.team.member.data.extensions.TeamExtensions.currentMember
+import imrankst1221.invite.team.member.data.extensions.TeamExtensions.isAvailableMemberSlots
+import imrankst1221.invite.team.member.data.extensions.TeamExtensions.isAvailableSupporterSlots
+import imrankst1221.invite.team.member.data.extensions.TeamExtensions.isSupporterLimitZero
 import imrankst1221.invite.team.member.utilities.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

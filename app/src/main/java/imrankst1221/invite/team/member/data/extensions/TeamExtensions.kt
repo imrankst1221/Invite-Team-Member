@@ -1,15 +1,6 @@
-package imrankst1221.invite.team.member.utilities
-
-/**
- * @author imran.choudhury
- * 31/10/21
- *
- * Android Extensions helper
- */
+package imrankst1221.invite.team.member.data.extensions
 
 import imrankst1221.invite.team.member.data.model.Team
-import imrankst1221.invite.team.member.utilities.TeamExtensions.currentMember
-import imrankst1221.invite.team.member.utilities.TeamExtensions.isSupporterLimitZero
 
 object TeamExtensions {
     fun Team.currentMember(): Int {

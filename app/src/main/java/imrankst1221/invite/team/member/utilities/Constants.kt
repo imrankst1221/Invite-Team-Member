@@ -10,7 +10,8 @@ class Constants {
             "57994f271ca3dd20541b912p",
             "57994fer1ca5dd20847d4w32"
         )
-        val TEAM_MEMBER_ROLE = hashMapOf(
+        const val supporter= "Supporter"
+        val TEAM_MEMBER_ROLE = mapOf(
             "Coach" to "manager",
             "Player Coach" to "editor",
             "Player" to "member",

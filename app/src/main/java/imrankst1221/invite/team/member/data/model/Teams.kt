@@ -1,7 +1,6 @@
 package imrankst1221.invite.team.member.data.model
 import com.google.gson.annotations.SerializedName
 
-
 data class Team(
     @SerializedName("id")
     val id: String? = null,
