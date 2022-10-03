@@ -7,20 +7,27 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
 import android.os.SystemClock
+import imrankst1221.invite.team.member.data.model.Invites
+import imrankst1221.invite.team.member.data.model.InvitesRequest
 import imrankst1221.invite.team.member.data.model.Team
 import imrankst1221.invite.team.member.utilities.Constants
 import okhttp3.Interceptor
-import retrofit2.http.Query
+import retrofit2.http.*
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 interface ApiService {
     @GET("teams")
     suspend fun getTeams(
-        @Query("teamId") appId: String,
+        @Query("teamId") appId: String
     ): Response<Team>
+
+    @POST("teams/{teamId}/invites")
+    suspend fun getInvitesUrl(
+        @Path("teamId") teamId: String,
+        @Body invitesRequest: InvitesRequest
+    ): Response<Invites>
 
     companion object {
         fun create(context: Context): ApiService {

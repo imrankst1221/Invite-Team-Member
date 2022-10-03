@@ -128,4 +128,19 @@ class TeamsViewModelTest {
         assertThat(data.isAvailableSupporterSlots()).isTrue()
     }
 
+
+    /**
+     * Run the app on Debug mode
+     * Mock data read team invitation URL
+     * Mock data file name: invite_mock_case_1.json
+     */
+    @Test
+    fun testTeamInvitesUrl_invite_mock_case_1() = runBlocking {
+        val id = Constants.DEMO_TEAM_IDS[0]
+        val role = Constants.TEAM_MEMBER_ROLE.getValue("Player Coach")
+        viewModel.fetchInvite(id, role)
+        val data = viewModel.onInviteData().getOrAwaitValue()
+        assertThat(data.url).isNotEmpty()
+    }
+
 }

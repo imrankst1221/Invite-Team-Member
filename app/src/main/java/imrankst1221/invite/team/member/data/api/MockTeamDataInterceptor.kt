@@ -45,6 +45,8 @@ class MockTeamDataInterceptor: Interceptor {
                     }
                 }
                 response = getMockEventListResponse(request, filename)
+            }else if (path.contains("/invites", ignoreCase = true)) {
+                response = getMockEventListResponse(request, "invite_mock_case_1.json")
             }
         }
         return response

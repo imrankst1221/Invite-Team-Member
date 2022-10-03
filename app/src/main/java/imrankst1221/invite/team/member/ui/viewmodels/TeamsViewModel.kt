@@ -11,4 +11,6 @@ class TeamsViewModel @Inject internal constructor(
     ) : ViewModel() {
     suspend fun fetchTeams(teamId: String) = teamRepository.fetchTeams(teamId)
     suspend fun onTeamsData() = teamRepository.onTeamsData()
+    suspend fun fetchInvite(teamId: String, role: String) = teamRepository.fetchInvite(teamId, role)
+    suspend fun onInviteData() = teamRepository.onInviteData()
 }
