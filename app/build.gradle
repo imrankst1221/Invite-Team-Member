@@ -83,6 +83,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
 
+    // QR code
+    implementation "com.google.zxing:core:$rootProject.googleZxing"
+
     // Testing dependencies
     testImplementation "junit:junit:$rootProject.junit"
     testImplementation "androidx.arch.core:core-testing:$rootProject.testCoreJunit"

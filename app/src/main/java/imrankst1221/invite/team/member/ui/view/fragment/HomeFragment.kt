@@ -38,7 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             findNavController().navigate(
-                R.id.action_FirstFragment_to_SecondFragment,
+                R.id.action_HomeFragment_to_InviteMembersFragment,
                 bundle
             )
         }

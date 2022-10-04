@@ -21,6 +21,7 @@ buildscript {
         livedataKtxVersion = '2.5.1'
         fragmentKtxVersion= '2.5.1'
         uiKtxVersion = '2.5.1'
+        googleZxing = '3.3.3'
 
         // test
         junit = '4.13.2'

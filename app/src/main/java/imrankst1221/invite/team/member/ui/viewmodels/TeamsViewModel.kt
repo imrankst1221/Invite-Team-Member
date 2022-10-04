@@ -7,10 +7,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TeamsViewModel @Inject internal constructor(
-        private val teamRepository: TeamsRepositoryImp
-    ) : ViewModel() {
+    private val teamRepository: TeamsRepositoryImp
+) : ViewModel() {
     suspend fun fetchTeams(teamId: String) = teamRepository.fetchTeams(teamId)
-    suspend fun onTeamsData() = teamRepository.onTeamsData()
-    suspend fun fetchInvite(teamId: String, role: String) = teamRepository.fetchInvite(teamId, role)
-    suspend fun onInviteData() = teamRepository.onInviteData()
+    fun onTeamsData() = teamRepository.onTeamsData()
+    suspend fun fetchInvite(teamId: String, role: String, isQrNavigation: Boolean) =
+        teamRepository.fetchInvite(teamId, role, isQrNavigation)
+
+    fun onInviteData() = teamRepository.onInviteData()
 }

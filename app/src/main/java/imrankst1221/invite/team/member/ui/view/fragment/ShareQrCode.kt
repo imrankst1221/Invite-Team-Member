@@ -1,0 +1,37 @@
+package imrankst1221.invite.team.member.ui.view.fragment
+
+import android.content.Context
+import android.os.Bundle
+import android.view.View
+import androidx.navigation.fragment.navArgs
+import com.google.zxing.WriterException
+import imrankst1221.invite.team.member.base.BaseFragment
+import imrankst1221.invite.team.member.databinding.FragmentShareQrCodeBinding
+import imrankst1221.invite.team.member.ui.view.MainActivity
+import imrankst1221.invite.team.member.utilities.UtilMethods
+
+class ShareQrCode :  BaseFragment<FragmentShareQrCodeBinding>() {
+    override fun setBinding(): FragmentShareQrCodeBinding =
+        FragmentShareQrCodeBinding.inflate(layoutInflater)
+
+    lateinit var mContext: Context
+    lateinit var shareUrl: String
+    private val args: ShareQrCodeArgs by navArgs()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mContext = (activity as MainActivity).applicationContext
+        shareUrl = args.shareUrl
+
+        initView()
+    }
+
+    private fun initView(){
+        try {
+            val bitmap = UtilMethods.encodeAsBitmap(shareUrl)
+            binding.imageViewQrCode.setImageBitmap(bitmap)
+        } catch (e: WriterException) {
+            e.printStackTrace()
+        }
+    }
+}
