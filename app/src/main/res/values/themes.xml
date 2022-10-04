@@ -19,7 +19,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.InviteTeamMember.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.InviteTeamMember.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="titleCentered">true</item>
+    </style>
 
-    <style name="Theme.InviteTeamMember.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -2,10 +2,8 @@ package imrankst1221.invite.team.member.ui.view.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import imrankst1221.invite.team.member.R
@@ -25,6 +23,7 @@ import imrankst1221.invite.team.member.utilities.Constants
 import imrankst1221.invite.team.member.utilities.Coroutines
 import imrankst1221.invite.team.member.utilities.UtilMethods
 
+
 class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>() {
     override fun setBinding(): FragmentInviteMembersBinding =
         FragmentInviteMembersBinding.inflate(layoutInflater)
@@ -41,9 +40,15 @@ class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>() {
         mContext = (activity as MainActivity).applicationContext
         teamId = args.teamId
 
+        initView()
         initOnClick()
         fetchTeams()
         setupObserver()
+    }
+
+    private fun initView(){
+        (activity as MainActivity?)?.setToolbarTitle(getString(R.string.invite_members_fragment_label))
+        (activity as MainActivity?)?.showBackButton()
     }
 
     private fun initOnClick() {

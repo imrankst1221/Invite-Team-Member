@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.google.zxing.WriterException
+import imrankst1221.invite.team.member.R
 import imrankst1221.invite.team.member.base.BaseFragment
 import imrankst1221.invite.team.member.databinding.FragmentShareQrCodeBinding
 import imrankst1221.invite.team.member.ui.view.MainActivity
@@ -27,6 +28,9 @@ class ShareQrCode :  BaseFragment<FragmentShareQrCodeBinding>() {
     }
 
     private fun initView(){
+        (activity as MainActivity?)?.setToolbarTitle(getString(R.string.my_qr_code_label))
+        (activity as MainActivity?)?.showBackButton()
+
         try {
             val bitmap = UtilMethods.encodeAsBitmap(shareUrl)
             binding.imageViewQrCode.setImageBitmap(bitmap)

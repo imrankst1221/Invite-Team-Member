@@ -2,13 +2,17 @@ package imrankst1221.invite.team.member.ui.view.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.navigation.fragment.findNavController
 import imrankst1221.invite.team.member.R
 import imrankst1221.invite.team.member.base.BaseFragment
 import imrankst1221.invite.team.member.databinding.FragmentHomeBinding
+import imrankst1221.invite.team.member.ui.view.MainActivity
 import imrankst1221.invite.team.member.utilities.Constants
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), LifecycleObserver {
     override fun setBinding(): FragmentHomeBinding =
         FragmentHomeBinding.inflate(layoutInflater)
 
@@ -17,11 +21,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
         initOnClick()
     }
 
+    override fun onStart() {
+        super.onStart()
+        initView()
+    }
     private fun initView() {
+        (activity as MainActivity?)?.setToolbarTitle(getString(R.string.app_name))
+        (activity as MainActivity?)?.hideBackButton()
         updateTestCase()
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Invite Team Member</string>
+    <string name="app_name">Invite Members</string>
     <!-- Strings used for fragments for navigation -->
     <string name="home_fragment_label">Home</string>
     <string name="invite_members_fragment_label">Invite Members</string>
