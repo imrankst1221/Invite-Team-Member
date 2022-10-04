@@ -56,7 +56,7 @@ class TeamsViewModelTest {
         val id = Constants.DEMO_TEAM_IDS[0]
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()
-        assertThat(data.id).isEqualTo(id)
+        assertThat(data?.id).isEqualTo(id)
     }
 
     /**
@@ -69,8 +69,8 @@ class TeamsViewModelTest {
         val id = Constants.DEMO_TEAM_IDS[0]
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()
-        assertThat(data.currentMember()).isEqualTo(
-            (data.members?.total ?: 0) - (data.members?.supporters ?: 0)
+        assertThat(data?.currentMember()).isEqualTo(
+            (data?.members?.total ?: 0) - (data?.members?.supporters ?: 0)
         )
     }
 
@@ -84,7 +84,7 @@ class TeamsViewModelTest {
         val id = Constants.DEMO_TEAM_IDS[1]
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()
-        assertThat(data.isAvailableMemberSlots()).isFalse()
+        assertThat(data?.isAvailableMemberSlots()).isFalse()
     }
 
 
@@ -98,7 +98,7 @@ class TeamsViewModelTest {
         val id = Constants.DEMO_TEAM_IDS[2]
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()
-        assertThat(data.isSupporterLimitZero()).isTrue()
+        assertThat(data?.isSupporterLimitZero()).isTrue()
     }
 
     /**
@@ -111,7 +111,7 @@ class TeamsViewModelTest {
         val id = Constants.DEMO_TEAM_IDS[3]
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()
-        assertThat(data.isAvailableSupporterSlots()).isFalse()
+        assertThat(data?.isAvailableSupporterSlots()).isFalse()
     }
 
     /**
@@ -124,8 +124,8 @@ class TeamsViewModelTest {
         val id = Constants.DEMO_TEAM_IDS[0]
         viewModel.fetchTeams(id)
         val data = viewModel.onTeamsData().getOrAwaitValue()
-        assertThat(data.isAvailableMemberSlots()).isTrue()
-        assertThat(data.isAvailableSupporterSlots()).isTrue()
+        assertThat(data?.isAvailableMemberSlots()).isTrue()
+        assertThat(data?.isAvailableSupporterSlots()).isTrue()
     }
 
 
@@ -138,9 +138,9 @@ class TeamsViewModelTest {
     fun testTeamInvitesUrl_invite_mock_case_1() = runBlocking {
         val id = Constants.DEMO_TEAM_IDS[0]
         val role = Constants.TEAM_MEMBER_ROLE.getValue("Player Coach")
-        viewModel.fetchInvite(id, role)
+        viewModel.fetchInvite(id, role, false)
         val data = viewModel.onInviteData().getOrAwaitValue()
-        assertThat(data.url).isNotEmpty()
+        assertThat(data?.url).isNotEmpty()
     }
 
 }

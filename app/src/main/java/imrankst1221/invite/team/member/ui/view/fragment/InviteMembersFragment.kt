@@ -123,13 +123,17 @@ class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>() {
     private fun setupObserver() = Coroutines.main {
         teamsViewModel.onTeamsData().observe(viewLifecycleOwner) { team ->
             if(team != null) {
-                updateUi(team)
+                activity?.runOnUiThread {
+                    updateUi(team)
+                }
             }
         }
 
         teamsViewModel.onInviteData().observe(viewLifecycleOwner) { invite ->
             if(invite != null) {
-                shareLink(invite)
+                activity?.runOnUiThread {
+                    shareLink(invite)
+                }
             }
         }
     }

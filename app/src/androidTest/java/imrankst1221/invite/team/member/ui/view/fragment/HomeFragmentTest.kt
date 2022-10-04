@@ -15,6 +15,7 @@ import imrankst1221.invite.team.member.ui.view.MainActivity
 import imrankst1221.invite.team.member.R
 import imrankst1221.invite.team.member.utilities.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.hamcrest.CoreMatchers.not
 
 import org.junit.After
 import org.junit.Before
@@ -47,11 +48,34 @@ class HomeFragmentTest {
     fun tearDown() {
     }
 
+    /**
+     * Run the app on Debug mode
+     * On invite button click check the navigation
+     */
     @Test
     fun testInviteMemberFragmentNavigation() {
         onView(withId(R.id.button_invite)).perform(click())
-        onView(withId(R.id.textview_second)).check(matches(isDisplayed()))
+        onView(withId(R.id.textViewCurrentMemberTitle)).check(matches(isDisplayed()))
         pressBack()
         onView(withId(R.id.button_invite)).check(matches(isDisplayed()))
+    }
+
+    /**
+     * Run the app on Debug mode
+     * Toolbar back button visibility test
+     */
+    @Test
+    fun testToolbarBackButtonVisibility() {
+        onView(withId(R.id.buttonToolbarBack)).check(matches(not(isDisplayed())))
+
+        onView(withId(R.id.button_invite)).perform(click())
+        onView(withId(R.id.buttonToolbarBack)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.buttonShareQrCode)).perform(click())
+        onView(withId(R.id.buttonToolbarBack)).check(matches(isDisplayed()))
+
+        pressBack()
+        pressBack()
+        onView(withId(R.id.buttonToolbarBack)).check(matches(not(isDisplayed())))
     }
 }
