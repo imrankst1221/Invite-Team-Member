@@ -1,15 +1,25 @@
 <resources>
     <string name="app_name">Invite Members</string>
-    <!-- Strings used for fragments for navigation -->
+
     <string name="home_fragment_label">Home</string>
     <string name="invite_members_fragment_label">Invite Members</string>
     <string name="my_qr_code_label">My QR Code</string>
 
-    <string name="invite">Invite</string>
-    <string name="previous">Previous</string>
+    <string name="button_invite">Invite</string>
+    <string name="button_back">Back</string>
+    <string name="button_share_br">Share QR Code</string>
+    <string name="button_copy_link">Copy Link</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_limit">Limit</string>
+    <string name="title_current_member">Current Members</string>
+    <string name="title_current_supporter">Current Supporters</string>
+    <string name="title_invite_permission">Invite Permissions</string>
+    <string name="title_what_permission">What are Permissions?</string>
+
+    <string name="detail_invite_permission">Invite URLs are valid for 7 days. Permissions can be
+changed from the member management view.</string>
+
+    <string name="message_permission_incorrect">Please select the available permission!</string>
+    <string name="message_clip_board_copy_success">Lick copy into Clip Board.</string>
+
 </resources>

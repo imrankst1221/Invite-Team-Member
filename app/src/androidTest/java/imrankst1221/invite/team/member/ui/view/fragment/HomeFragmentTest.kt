@@ -54,10 +54,10 @@ class HomeFragmentTest {
      */
     @Test
     fun testInviteMemberFragmentNavigation() {
-        onView(withId(R.id.button_invite)).perform(click())
+        onView(withId(R.id.buttonInvite)).perform(click())
         onView(withId(R.id.textViewCurrentMemberTitle)).check(matches(isDisplayed()))
         pressBack()
-        onView(withId(R.id.button_invite)).check(matches(isDisplayed()))
+        onView(withId(R.id.buttonInvite)).check(matches(isDisplayed()))
     }
 
     /**
@@ -68,7 +68,7 @@ class HomeFragmentTest {
     fun testToolbarBackButtonVisibility() {
         onView(withId(R.id.buttonToolbarBack)).check(matches(not(isDisplayed())))
 
-        onView(withId(R.id.button_invite)).perform(click())
+        onView(withId(R.id.buttonInvite)).perform(click())
         onView(withId(R.id.buttonToolbarBack)).check(matches(isDisplayed()))
 
         onView(withId(R.id.buttonShareQrCode)).perform(click())

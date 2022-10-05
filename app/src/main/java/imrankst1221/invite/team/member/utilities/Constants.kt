@@ -15,7 +15,7 @@ class Constants {
             "Coach" to "manager",
             "Player Coach" to "editor",
             "Player" to "member",
-            "Supporter" to "readonly"
+            supporter to "readonly"
         )
     }
 }

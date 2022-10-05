@@ -28,7 +28,7 @@
                     android:layout_centerVertical="true"
                     android:textAllCaps="false"
                     android:gravity="left|center"
-                    android:text="Back" />
+                    android:text="@string/button_back" />
 
                 <TextView
                     android:id="@+id/textViewToolbarTitle"

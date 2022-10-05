@@ -70,6 +70,14 @@ object UtilMethods {
         clipboardManager.setPrimaryClip(clipData)
     }
 
+    /**
+     * Get ClipBoard value
+     * @context is application context
+     */
+    fun getFromClipBoard(context: Context) : String? {
+        val clipBoardManager = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        return clipBoardManager.primaryClip?.getItemAt(0)?.text?.toString()
+    }
 
     /**
      * Encode As Bitmap

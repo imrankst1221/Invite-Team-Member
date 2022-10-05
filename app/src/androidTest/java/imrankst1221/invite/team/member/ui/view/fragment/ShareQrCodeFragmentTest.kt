@@ -30,7 +30,7 @@ class ShareQrCodeFragmentTest {
     private var hiltRule = HiltAndroidRule(this)
     private val coroutineRule = MainCoroutineRule()
     private val instantTaskExecutorRule = InstantTaskExecutorRule()
-    
+
     @get:Rule
     val rule = RuleChain
         .outerRule(hiltRule)
@@ -55,7 +55,7 @@ class ShareQrCodeFragmentTest {
     @Test
     fun testQrCodeWith_permissionCoach() {
         val invitePermission = "Coach"
-        onView(withId(R.id.button_invite)).perform(click())
+        onView(withId(R.id.buttonInvite)).perform(click())
         onView(withId(R.id.spinnerInvitePermission)).perform(click())
 
         val textViewTitle = onView(
@@ -77,7 +77,7 @@ class ShareQrCodeFragmentTest {
     @Test
     fun testQrCodeWith_permissionPlayer() {
         val invitePermission = "Player"
-        onView(withId(R.id.button_invite)).perform(click())
+        onView(withId(R.id.buttonInvite)).perform(click())
         onView(withId(R.id.spinnerInvitePermission)).perform(click())
 
         val textViewTitle = onView(
@@ -99,7 +99,7 @@ class ShareQrCodeFragmentTest {
     @Test
     fun testQrCodeWith_permissionSupporter() {
         val invitePermission = "Supporter"
-        onView(withId(R.id.button_invite)).perform(click())
+        onView(withId(R.id.buttonInvite)).perform(click())
         onView(withId(R.id.spinnerInvitePermission)).perform(click())
 
         val textViewTitle = onView(

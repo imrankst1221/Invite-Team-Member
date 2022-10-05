@@ -3,7 +3,6 @@ package imrankst1221.invite.team.member.ui.view.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import imrankst1221.invite.team.member.R
@@ -63,7 +62,7 @@ class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>() {
 
     private fun updateUi(team: Team){
         binding.textViewCurrentMember.text = team.currentMember().toString()
-        binding.textViewMemberLimitTitle.text = team.plan?.memberLimit.toString()
+        binding.textViewMemberLimit.text = team.plan?.memberLimit.toString()
 
         if (team.isSupporterLimitZero()) {
             binding.layoutCurrentSupporter.visibility = View.GONE
@@ -75,7 +74,7 @@ class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>() {
 
         invitePermissions = arrayListOf()
         Constants.TEAM_MEMBER_ROLE.keys.forEachIndexed { index, key ->
-            if (key == "Supporter") {
+            if (key == Constants.supporter) {
                 if (!team.isSupporterLimitZero()) {
                     invitePermissions.add(InvitePermission(key, team.isAvailableSupporterSlots()))
                 }
@@ -98,7 +97,7 @@ class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>() {
             )
         }else{
             UtilMethods.copyIntoClipBoard(mContext, invite.url ?: "")
-            UtilMethods.showLongToast(mContext, "Lick copy into Clip Board.")
+            UtilMethods.showLongToast(mContext, getString(R.string.message_clip_board_copy_success))
         }
     }
 
@@ -116,7 +115,7 @@ class InviteMembersFragment : BaseFragment<FragmentInviteMembersBinding>() {
                 teamsViewModel.fetchInvite(teamId, role, isQrNavigation)
             }
         }else {
-            UtilMethods.showLongToast(mContext, "Please select the available permission!")
+            UtilMethods.showLongToast(mContext, getString(R.string.message_permission_incorrect))
         }
     }
 
