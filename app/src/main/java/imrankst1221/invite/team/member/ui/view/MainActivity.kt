@@ -8,6 +8,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import imrankst1221.invite.team.member.R
@@ -17,11 +18,11 @@ import imrankst1221.invite.team.member.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun setBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    override fun setBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+    private lateinit var navController: NavController
     val teamsViewModel: TeamsViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,7 +33,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun initView(){
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         //setupActionBarWithNavController(navController, appBarConfiguration)
     }

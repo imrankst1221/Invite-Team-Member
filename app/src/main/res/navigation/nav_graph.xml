@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/shareQrCode"
-        android:name="imrankst1221.invite.team.member.ui.view.fragment.ShareQrCode"
+        android:name="imrankst1221.invite.team.member.ui.view.fragment.ShareQrCodeFragment"
         android:label="@string/my_qr_code_label"
         tools:layout="@layout/fragment_share_qr_code">
         <argument

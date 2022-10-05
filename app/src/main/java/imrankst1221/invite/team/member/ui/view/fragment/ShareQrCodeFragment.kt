@@ -11,13 +11,13 @@ import imrankst1221.invite.team.member.databinding.FragmentShareQrCodeBinding
 import imrankst1221.invite.team.member.ui.view.MainActivity
 import imrankst1221.invite.team.member.utilities.UtilMethods
 
-class ShareQrCode :  BaseFragment<FragmentShareQrCodeBinding>() {
+class ShareQrCodeFragment :  BaseFragment<FragmentShareQrCodeBinding>() {
     override fun setBinding(): FragmentShareQrCodeBinding =
         FragmentShareQrCodeBinding.inflate(layoutInflater)
 
     lateinit var mContext: Context
     lateinit var shareUrl: String
-    private val args: ShareQrCodeArgs by navArgs()
+    private val args: ShareQrCodeFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
